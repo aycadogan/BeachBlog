@@ -46,5 +46,5 @@ app.use(express.static('public'))
 app.use('/blogs', blogRouter)
 
 
-app.listen(3000)
+app.listen(3001)
 

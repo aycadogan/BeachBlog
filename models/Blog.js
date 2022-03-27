@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const slug = require('mongoose-slug-generator')
+
+mongoose.plugin(slug);
 const blogSchema = new mongoose.Schema({
     title:{
         type:String,
@@ -18,6 +21,12 @@ const blogSchema = new mongoose.Schema({
     img:{
         type:String,
         default:'placeholder.jpg'
+    },
+    slug:{
+        type:String,
+        slug:"title",
+        unique:true,
+        slug_padding_size:2
     }
 });
 
