@@ -1,6 +1,4 @@
-const express = require('express')
 const Blog = require('../models/Blog.model')
-const router = express.Router()
 const multer = require('multer')
 
 //define storage for the images
@@ -24,11 +22,18 @@ const upload = multer({
     }
 })
 
+exports.getAllBlogs = async (request, response) => {
+    let blogs = await Blog.find().sort({ timeCreated: 'desc' });
+  
+    response.render('index', { blogs: blogs });
 
-router.get('/new', (req,res) => {
+}
+
+exports.getAddBlog = (req,res) => {
     res.render('newBlog')
-})
-router.get('/:slug', async (req,res) => {
+}
+
+exports.viewParams = async (req,res) => {
     console.log(req.params.slug);
     let blog = await Blog.findOne({slug:req.params.slug})
     if(blog){
@@ -36,14 +41,15 @@ router.get('/:slug', async (req,res) => {
     }else{
         res.redirect('/')
     }
-})
-router.post('/', upload.single('image'), async (req,res) => {
-    // console.log(req.body);
+}
+
+exports.postAddBlog = upload.single('image'), async (req,res) => {
+    console.log(req.body);
     let blog = new Blog({
         title:req.body.title,
         author:req.body.author,
         description: req.body.description,
-        img:req.file.filename,
+        img:req.file.filename
     })
 
     try{
@@ -52,15 +58,14 @@ router.post('/', upload.single('image'), async (req,res) => {
     }catch(err){
         console.log(err);
     }
-})
+}
 
-router.get('/edit/:id', async (req,res) => {
+exports.getEditView = async (req,res) => {
     let blog = await Blog.findById(req.params.id)
     res.render('edit',{ blog:blog})
-})
+}
 
-//route to handle updates
-router.put('/:id', async (request, response) => {
+exports.postEditBlog =  async (request, response) => {
     request.blog = await Blog.findById(request.params.id);
     let blog = request.blog;
     blog.title = request.body.title;
@@ -75,12 +80,9 @@ router.put('/:id', async (request, response) => {
       console.log(error);
       response.redirect(`/blogs/edit/${blog.id}`, { blog: blog });
     }
-  });
-  
-router.delete('/:id', async(req,res) => {
+  }
+
+exports.postDeleteBlog = async(req,res) => {
     await Blog.findByIdAndDelete(req.params.id)
     res.redirect('/')
-})
-
-
-module.exports = router;
+}
