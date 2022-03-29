@@ -86,3 +86,4 @@ exports.postDeleteBlog = async(req,res) => {
     await Blog.findByIdAndDelete(req.params.id)
     res.redirect('/')
 }
+

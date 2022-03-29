@@ -20,7 +20,7 @@ app.use(methodOverride('_method'))
 app.get('/', async (request, response) => {
     let blogs = await Blog.find().sort({ timeCreated: 'desc' });
   
-    response.render('index', { blogs: blogs });
+    response.render('blog', { blogs: blogs });
 
 })
 
@@ -28,5 +28,5 @@ app.use(express.static('public'))
 app.use('/blogs', blogRouter)
 
 
-app.listen(3004)
+app.listen(3006)
 

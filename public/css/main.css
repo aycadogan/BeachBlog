@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital,wght@0,400;0,500;1,300&display=swap');
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif; 
+  }
+  
+  .image img{
+    object-fit: cover;
+  }
+
+.logo{
+  font-family: 'Dancing Script', cursive;
+  color: black;
+  font-size:3rem;
+}
+.addNewBlog{
+  color:black;
+  font-family: 'Roboto', sans-serif; 
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+h2, h3{
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 400;
+}
+
+
+.bg-cover{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.title{
+  color: #6B7B83;
+}
+
+#buttons{
+  background:#6B7B83;
+  font-family: 'Roboto', sans-serif; 
+  border: 1px solid #6B7B83;
+}
+
+#bg-color{
+  background:#B8C9D3;
+}

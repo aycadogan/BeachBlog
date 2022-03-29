@@ -1,0 +1,61 @@
+<%- include('./includes/head.ejs') %>
+    <title>A blog</title>
+  </head>
+
+  <body>
+    <%- include('./includes/nav.ejs') %>
+
+    <div class="container-lg min-vh-100 bg-cover d-flex align-items-center justify-content-center mb-5" style="background-image: url(placeholder.jpg);">
+      <h2 class="text-center mb-4 fst-italic align-center text-white" style=>
+        Share your unique beach stories with us
+      </h2>
+    </div>
+    
+      <div class="container-lg ">
+        <div class="text-center mt-5">
+          <h3>Our Latest Blogs</h3>
+        </div>
+      </div>
+      <% if(blogs.length<1){%>
+      <p class="text-black">No posts yet, create a new post</p>
+      <% } %> 
+
+      
+      <div class="row my-2 g-2 align-items-center justify-content-center">
+        <% blogs.forEach(blog=>{ %>
+        <div class="col-8 col-lg-4 col-xl-3">
+            
+          <div class="card border-0">
+            
+            <img
+              src="/uploads/images/<%= blog.img %>"
+              class="card-img"
+              alt="beach"
+            />
+            <div class="card-body text-center py-4">
+              <h4 class="card-title title"><%= blog.title %></h4>
+              <p class="card-text mx-5 text-muted d-lg-block">
+                <%= blog.description.slice(0, 80).concat('...')%>
+              </p>
+              <p class="lead card-subtitle text-muted"><%= blog.author%></p>
+              <p style="font-size: 14px; line-height: 0.2rem mt-2">
+                <%= blog.timeCreated.toLocaleDateString() %>
+              </p>
+              <a href="blogs/edit/<%= blog.id %>" class="btn btn-primary" id="buttons">Edit</a>
+              <a href="/blogs/<%=blog.id%>?_method=DELETE" class="btn btn-primary" id="buttons">Delete</a>
+              <a href="blogs/<%=blog.slug %> " class="btn btn-primary" id="buttons"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <% }) %>
+    
+    <script src="../js/index.js"></script>
+
+    <%- include('./includes/end.ejs') %>
+  </body>
+</html>
