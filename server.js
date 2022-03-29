@@ -27,6 +27,9 @@ app.get('/', async (request, response) => {
 app.use(express.static('public'))
 app.use('/blogs', blogRouter)
 
+app.use((req,res,next) => {
+    res.status(404).render('404.ejs', {pageTitle: 'Page Not Found'})
+})
 
 app.listen(3006)
 
