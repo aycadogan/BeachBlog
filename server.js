@@ -30,6 +30,7 @@ app.use('/blogs', blogRouter)
 app.use((req,res,next) => {
     res.status(404).render('404.ejs', {pageTitle: 'Page Not Found'})
 })
+const PORT = process.env.PORT || 3007
 
-app.listen(3006)
+app.listen(PORT)
 

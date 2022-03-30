@@ -28,7 +28,7 @@ const upload = multer({
 router.get('/new', (req,res) => {
     res.render('newBlog')
 })
-router.get('/:slug', async (req,res) => {
+router.get('/:slug', async (req,res,next) => {
     console.log(req.params.slug);
     if(req.query._method == 'DELETE'){
         req.method = 'DELETE'
