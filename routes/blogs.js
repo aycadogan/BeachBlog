@@ -30,9 +30,15 @@ router.get('/new', (req,res) => {
 })
 router.get('/:slug', async (req,res) => {
     console.log(req.params.slug);
+    if(req.query._method == 'DELETE'){
+        req.method = 'DELETE'
+        req.url = req.path
+        return next()
+    }
+
     let blog = await Blog.findOne({slug:req.params.slug})
     if(blog){
-        res.render('createdBlog', {blog:blog})
+        return res.render('createdBlog', {blog:blog})
     }else{
         res.redirect('/')
     }

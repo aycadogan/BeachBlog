@@ -41,18 +41,20 @@
               <p style="font-size: 14px; line-height: 0.2rem mt-2">
                 <%= blog.timeCreated.toLocaleDateString() %>
               </p>
-              <a href="blogs/edit/<%= blog.id %>" class="btn btn-primary" id="buttons">Edit</a>
-              <a href="/blogs/<%=blog.id%>?_method=DELETE" class="btn btn-primary" id="buttons">Delete</a>
-              <a href="blogs/<%=blog.slug %> " class="btn btn-primary" id="buttons"
-                >Read More</a
-              >
+              <div class="d-grid gap-2 d-md-block">
+                <a href="blogs/edit/<%= blog.id %>" class="btn btn-primary" id="buttons">Edit</a>
+                <a href="/blogs/<%=blog.id%>?_method=DELETE" class="btn btn-primary" id="buttons">Delete</a>
+                <a href="blogs/<%=blog.slug %> " class="btn btn-primary" id="buttons">Read More</a>
+              </div>
+              
             </div>
           </div>
         </div>
         
+        <% }) %>
       </div>
 
-      <% }) %>
+
     
     <script src="../js/index.js"></script>
 
